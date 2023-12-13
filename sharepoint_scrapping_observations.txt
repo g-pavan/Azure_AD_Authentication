@@ -1,0 +1,33 @@
+Catches of SharePoint scrapping
+
+Previous Code
+--> Unable to read all the files and folders in a sharepoint path.
+--> Reading a file data for three times in orders to match the keywords which is time consuming.
+--> Not able to catch the error when sharepoint client try to open a file which consists of % and some wild card symbols.
+--> Script is not skipping the files other than supporting formats
+
+Improved Version
+--> Properly reading all files and folders and listing in a structerd way in both csv and json files.
+--> File opeining for a single time and extracting requried keywords.
+--> Performace improved in extraction by introducing class based approach.
+--> Implemented logging functionality for every session user is running on.
+--> Handled file opening errors.
+--> Skipping unsupported files.
+
+Catch in imrpved version
+--> Although, improved version is well aligned with all aspects but the logic to finding and extracting 
+keywords were not changed.
+
+Observations in keyword extraction - Earlier
+--> List of keywords present in a csv file, typically there are three categories of keywords.
+--> Due to difference in length, while reading the keywords as a dataframe automatically null or None 
+consider as a keyword for further processing.
+--> Every file is openeing in a string format and compared with all the keywords presents.
+--> Extracted file string contains escape sequences like \n \t \\\ /// and some wild charcters which is need to stripped before matching with keywords.
+--> Logic is only stripping \n characters from file string.
+--> Some keywords are also consists of escape sequences like \x0 which may cause result mismatch in matching.
+
+Observations in keyword extraction - Proposal
+--> Need to do proper stripping of both keywords and file strings before comparision.
+--> Redesigining of keyword mapping logic should be needed.
+--> Calculation of matching keyword accuracy need to be tested.
